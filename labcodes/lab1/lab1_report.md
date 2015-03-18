@@ -5,6 +5,9 @@ Lab1：系统软件启动过程
 
 ## ucore.img 是如何一步一步生成的？
  
+ ![result_practice_1](http://postfiles4.naver.net/20150319_83/jaeyung1001_142670504351038Hf1_PNG/Selection_001.png?type=w2)
+ ![result_practice_2](http://postfiles10.naver.net/20150319_137/jaeyung1001_1426705043759anQy4_PNG/ucore_img.png?type=w2)
+ 
 >gcc -Iboot/ -fno-builtin -Wall -ggdb -m32 -nostdinc -fno-stack-protector -Ilibs/ -Os -nostdinc -c boot/bootasm.S -o obj/boot/bootasm.o
  (编译 bootasm.S，生成 bootasm.o) \n
 
@@ -74,11 +77,15 @@ Lab1：系统软件启动过程
 
 # 练习 2：
 1. 屏幕显示：
-![result](C:\Users\user\Desktop)
+
+![result_practice_3](http://postfiles9.naver.net/20150319_152/jaeyung1001_1426705043253kcrjr_PNG/practice2.png?type=w2)
+
 2. 
 > 敲入 break *0x7c00，定义断点，敲入 c，执行到指令 cli，断点触发。
 3．屏幕显示：
- 
+
+![result_practice_4](http://blogfiles.naver.net/20150319_68/jaeyung1001_1426705320963sQERN_JPEG/num3.jpg)
+
 4.
 > 敲入 b *0x7c0e，再敲入 c，则执行到断点处停止，成功。
 
@@ -108,7 +115,8 @@ Lab1：系统软件启动过程
 （4）把 ELFHDR 的入口点地址转换为函数指针进行调用
 
 # 练习 5：
- 
+
+![result_practice_7](http://blogfiles.naver.net/20150319_102/jaeyung1001_1426705321266YEbwd_JPEG/num5.jpg)
 实现过程是迭代寻找上一个 EBP，并根据当前 EBP 的值确定 EIP 和参数的值。
 各个数值分别是 EBP、EIP，以及 4 个参数的值，调用函数的行号，当时调用的指令与现在指令的条数之差.
 
@@ -117,6 +125,7 @@ Lab1：系统软件启动过程
 >8个字节；0~15位和48~63位.
 
 2.
+![result_practice_8](http://blogfiles.naver.net/20150319_238/jaeyung1001_1426705321606C4gUH_JPEG/num6.jpg)
 >实现过程：对外部数组 __vector 赋值即可。注意系统调用要用GD_UTEXT 和 DPL_USER。最后要设置 IDTR 寄存器.
 
 3.
