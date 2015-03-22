@@ -1,5 +1,5 @@
 #Lab1：系统软件启动过程
-###学号：2012 班级：计23 姓名：李载隆 
+###学号：2012080061 班级：计23 姓名：李载隆 
 
 # 练习 1：
 
@@ -125,7 +125,9 @@
 >8个字节；0~15位和48~63位.
 
 2.
+
 ![result_practice_8](http://blogfiles.naver.net/20150319_238/jaeyung1001_1426705321606C4gUH_JPEG/num6.jpg)
+![result_practice_9](http://postfiles5.naver.net/20150322_244/jaeyung1001_1427024294110SOrXa_PNG/prac6_1.png?type=w2)
 >实现过程：对外部数组 __vector 赋值即可。注意系统调用要用GD_UTEXT 和 DPL_USER。最后要设置 IDTR 寄存器.
 
 3.
