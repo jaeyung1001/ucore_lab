@@ -84,4 +84,5 @@ pte_get函数结构图:
 •	数据结构Page的全局变量（其实是一个数组）的每一项与页表中的页目录项和页表项有无对应关系？如果有，其对应关系是啥？
 
 
+ ![result](http://postfiles11.naver.net/20150329_170/jaeyung1001_1427628618225jeSBi_PNG/lab2_make_qemu.png?type=w2)
  
