@@ -92,6 +92,6 @@ pte_get函数结构图:
  
 执行 make V=:
 ```
-转到保护状态
+转到保护状态过程
 ```
  ![protector](http://postfiles4.naver.net/20150329_275/jaeyung1001_1427629194764isIXv_PNG/protector.png?type=w2)
