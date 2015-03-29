@@ -78,11 +78,20 @@ pte_get函数结构图:
 为此,需要补全在 kern/mm
 /pmm.c中的page_remove_pte函数。page_remove_pte函数的调用关系图如下所示：
 ```
+
 ![practice_3](https://github.com/jaeyung1001/ucore_docs/blob/master/lab2_figs/image002.png?raw=true)
 
 请在实验报告中简要说明你的设计实现过程。请回答如下问题：
 •	数据结构Page的全局变量（其实是一个数组）的每一项与页表中的页目录项和页表项有无对应关系？如果有，其对应关系是啥？
 
+#实验结果
+
+执行 make qemu:
 
  ![result](http://postfiles11.naver.net/20150329_170/jaeyung1001_1427628618225jeSBi_PNG/lab2_make_qemu.png?type=w2)
  
+执行 make V=:
+```
+转到保护状态
+```
+ ![protector](http://postfiles4.naver.net/20150329_275/jaeyung1001_1427629194764isIXv_PNG/protector.png?type=w2)
