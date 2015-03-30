@@ -116,7 +116,7 @@
 
 # 练习 5：
 
-![result_practice_7](http://blogfiles.naver.net/20150319_102/jaeyung1001_1426705321266YEbwd_JPEG/num5.jpg)
+![result_practice_7](http://postfiles11.naver.net/20150330_42/jaeyung1001_14277004623416ouSc_JPEG/687474703a2f2f626c6f6766696c65732e6e617665722e6e65742f32303135303331395f3130322f.jpg?type=w2)
 实现过程是迭代寻找上一个 EBP，并根据当前 EBP 的值确定 EIP 和参数的值。
 各个数值分别是 EBP、EIP，以及 4 个参数的值，调用函数的行号，当时调用的指令与现在指令的条数之差.
 
