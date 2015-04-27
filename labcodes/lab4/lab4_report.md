@@ -36,6 +36,7 @@
 
 ## 实验过程图
 
-![]()
-![]()
-![]()![]()
+![lab4](http://postfiles6.naver.net/20150421_101/jaeyung1001_1429620567443M2jIj_PNG/make_V.png?type=w2)
+![lab4](http://postfiles15.naver.net/20150421_30/jaeyung1001_142961989882235kYO_PNG/lab4_output.png?type=w2)
+![lab4](http://postfiles3.naver.net/20150421_66/jaeyung1001_1429619899456cJkKv_PNG/lab4_output2.png?type=w2)
+![lab4](http://postfiles3.naver.net/20150421_130/jaeyung1001_1429619899931WKO5s_PNG/lab4_output3.png?type=w2)
