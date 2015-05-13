@@ -4,24 +4,24 @@
 #include <monitor.h>
 #include <assert.h>
 
-#define N 5 /* 哲学家数目 */
-#define LEFT (i-1+N)%N /* i的左邻号码 */
-#define RIGHT (i+1)%N /* i的右邻号码 */
-#define THINKING 0 /* 哲学家正在思考 */
-#define HUNGRY 1 /* 哲学家想取得叉子 */
-#define EATING 2 /* 哲学家正在吃面 */
-#define TIMES  4 /* 吃4次饭 */
+#define N 5 /* 꿨若뜻빊*/
+#define LEFT (i-1+N)%N /* i꾢랩삣뤇*/
+#define RIGHT (i+1)%N /* i꾢뤂삣뤇*/
+#define THINKING 0 /* 꿨若뜻ⓩ앲*/
+#define HUNGRY 1 /* 꿨若뜻꺍뽩풓됧춴 */
+#define EATING 2 /* 꿨若뜻ⓨ릡*/
+#define TIMES  4 /* 轝↓ */
 #define SLEEP_TIME 10
 
 //---------- philosophers problem using semaphore ----------------------
-int state_sema[N]; /* 记录每个人状态的数组 */
-/* 信号量是一个特殊的整型变量 */
-semaphore_t mutex; /* 临界区互斥 */
-semaphore_t s[N]; /* 每个哲学家一个信号量 */
+int state_sema[N]; /* 溫겼퐬驪뤶릉雅븀듁곭쉪곁퍍 */
+/* 岳▼뤇뤸삸訝訝ょ돶餘딁쉪닷엹섌뇧 */
+semaphore_t mutex; /* 訝당븣뷰틨*/
+semaphore_t s[N]; /* 驪뤶릉꿨若뜸訝や에룬뇧 */
 
 struct proc_struct *philosopher_proc_sema[N];
 
-void phi_test_sema(i) /* i：哲学家号码从0到N-1 */
+void phi_test_sema(i) /* i竊싧벒耶루쟻餓캮-1 */
 { 
     if(state_sema[i]==HUNGRY&&state_sema[LEFT]!=EATING
             &&state_sema[RIGHT]!=EATING)
@@ -31,39 +31,39 @@ void phi_test_sema(i) /* i：哲学家号码从0到N-1 */
     }
 }
 
-void phi_take_forks_sema(int i) /* i：哲学家号码从0到N-1 */
+void phi_take_forks_sema(int i) /* i竊싧벒耶루쟻餓캮-1 */
 { 
-        down(&mutex); /* 进入临界区 */
-        state_sema[i]=HUNGRY; /* 记录下哲学家i饥饿的事实 */
-        phi_test_sema(i); /* 试图得到两只叉子 */
-        up(&mutex); /* 离开临界区 */
-        down(&s[i]); /* 如果得不到叉子就阻塞 */
+        down(&mutex); /* 瓦쎾뀯訝당븣*/
+        state_sema[i]=HUNGRY; /* 溫겼퐬訝뗥벒耶i耀ι꾡틟若*/
+        phi_test_sema(i); /* 瑥뺝쎗孃쀥댆訝ㅵ룵됧춴 */
+        up(&mutex); /* 獵삣訝당븣*/
+        down(&s[i]); /* 倻귝옖孃쀤툖겼룊耶먨갚삣줊 */
 }
 
-void phi_put_forks_sema(int i) /* i：哲学家号码从0到N-1 */
+void phi_put_forks_sema(int i) /* i竊싧벒耶루쟻餓캮-1 */
 { 
-        down(&mutex); /* 进入临界区 */
-        state_sema[i]=THINKING; /* 哲学家进餐结束 */
-        phi_test_sema(LEFT); /* 看一下左邻居现在是否能进餐 */
-        phi_test_sema(RIGHT); /* 看一下右邻居现在是否能进餐 */
-        up(&mutex); /* 离开临界区 */
+        down(&mutex); /* 瓦쎾뀯訝당븣*/
+        state_sema[i]=THINKING; /* 꿨若띈퓵繞먪퍜*/
+        phi_test_sema(LEFT); /* 뗤訝뗥랩삣콉겼쑉맔썼퓵繞*/
+        phi_test_sema(RIGHT); /* 뗤訝뗥뤂삣콉겼쑉맔썼퓵繞*/
+        up(&mutex); /* 獵삣訝당븣*/
 }
 
-int philosopher_using_semaphore(void * arg) /* i：哲学家号码，从0到N-1 */
+int philosopher_using_semaphore(void * arg) /* i竊싧벒耶루쟻竊뚥퍗0캮-1 */
 {
     int i, iter=0;
     i=(int)arg;
     cprintf("I am No.%d philosopher_sema\n",i);
     while(iter++<TIMES)
-    { /* 无限循环 */
-        cprintf("Iter %d, No.%d philosopher_sema is thinking\n",iter,i); /* 哲学家正在思考 */
+    { /* 좈솏孃ょ렞 */
+        cprintf("Iter %d, No.%d philosopher_sema is thinking\n",iter,i); /* 꿨若뜻ⓩ앲*/
         do_sleep(SLEEP_TIME);
         phi_take_forks_sema(i); 
-        /* 需要两只叉子，或者阻塞 */
-        cprintf("Iter %d, No.%d philosopher_sema is eating\n",iter,i); /* 进餐 */
+        /* 誤곦륵ゅ룊耶먲펽뽬낂샍櫻*/
+        cprintf("Iter %d, No.%d philosopher_sema is eating\n",iter,i); /* 瓦쏃쨶 */
         do_sleep(SLEEP_TIME);
         phi_put_forks_sema(i); 
-        /* 把两把叉子同时放回桌子 */
+        /* 듾륵듿룊耶먨릪뜻붂욄죱耶*/
     }
     cprintf("No.%d philosopher_sema quit\n",i);
     return 0;    
@@ -105,7 +105,7 @@ int philosopher_using_semaphore(void * arg) /* i：哲学家号码，从0到N-1 
 
 struct proc_struct *philosopher_proc_condvar[N]; // N philosopher
 int state_condvar[N];                            // the philosopher's state: EATING, HUNGARY, THINKING  
-monitor_t mt, *mtp=&mt;                          // monitor
+monitor_t mt, *mtp=&mt;                                    // mp is mutex semaphore for monitor's procedures
 
 void phi_test_condvar (i) { 
     if(state_condvar[i]==HUNGRY&&state_condvar[LEFT]!=EATING
@@ -121,9 +121,17 @@ void phi_test_condvar (i) {
 void phi_take_forks_condvar(int i) {
      down(&(mtp->mutex));
 //--------into routine in monitor--------------
-     // LAB7 EXERCISE1: YOUR CODE
+     // LAB7 EXERCISE1: 2012080061 李载隆
      // I am hungry
      // try to get fork
+      // I am hungry
+      state_condvar[i]=HUNGRY; 
+      // try to get fork
+      phi_test_condvar(i); 
+      while (state_condvar[i] != EATING) {
+          cprintf("phi_take_forks_condvar: %d didn't get fork and will wait\n",i);
+          cond_wait(&mtp->cv[i]);
+      }
 //--------leave routine in monitor--------------
       if(mtp->next_count>0)
          up(&(mtp->next));
@@ -135,9 +143,14 @@ void phi_put_forks_condvar(int i) {
      down(&(mtp->mutex));
 
 //--------into routine in monitor--------------
-     // LAB7 EXERCISE1: YOUR CODE
+     // LAB7 EXERCISE1: 2012080061 李载隆
      // I ate over
      // test left and right neighbors
+      // I ate over 
+      state_condvar[i]=THINKING;
+      // test left and right neighbors
+      phi_test_condvar(LEFT);
+      phi_test_condvar(RIGHT);
 //--------leave routine in monitor--------------
      if(mtp->next_count>0)
         up(&(mtp->next));
