@@ -30,13 +30,13 @@ void phi_test_sema(i)
     }
 }
 
-void phi_take_forks_sema(int i) /* i竊싧벒耶루쟻餓캮-1 */
+void phi_take_forks_sema(int i)
 { 
-        down(&mutex); /* 瓦쎾뀯訝당븣*/
-        state_sema[i]=HUNGRY; /* 溫겼퐬訝뗥벒耶i耀ι꾡틟若*/
-        phi_test_sema(i); /* 瑥뺝쎗孃쀥댆訝ㅵ룵됧춴 */
-        up(&mutex); /* 獵삣訝당븣*/
-        down(&s[i]); /* 倻귝옖孃쀤툖겼룊耶먨갚삣줊 */
+        down(&mutex);
+        state_sema[i]=HUNGRY;
+        phi_test_sema(i);
+        up(&mutex);
+        down(&s[i]);
 }
 
 void phi_put_forks_sema(int i)
