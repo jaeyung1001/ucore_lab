@@ -4,24 +4,23 @@
 #include <monitor.h>
 #include <assert.h>
 
-#define N 5 /* 꿨若뜻빊*/
-#define LEFT (i-1+N)%N /* i꾢랩삣뤇*/
-#define RIGHT (i+1)%N /* i꾢뤂삣뤇*/
-#define THINKING 0 /* 꿨若뜻ⓩ앲*/
-#define HUNGRY 1 /* 꿨若뜻꺍뽩풓됧춴 */
-#define EATING 2 /* 꿨若뜻ⓨ릡*/
-#define TIMES  4 /* 轝↓ */
+#define N 5 
+#define LEFT (i-1+N)%N
+#define RIGHT (i+1)%N 
+#define THINKING 0
+#define HUNGRY 1
+#define EATING 2
+#define TIMES  4
 #define SLEEP_TIME 10
 
 //---------- philosophers problem using semaphore ----------------------
-int state_sema[N]; /* 溫겼퐬驪뤶릉雅븀듁곭쉪곁퍍 */
-/* 岳▼뤇뤸삸訝訝ょ돶餘딁쉪닷엹섌뇧 */
-semaphore_t mutex; /* 訝당븣뷰틨*/
-semaphore_t s[N]; /* 驪뤶릉꿨若뜸訝や에룬뇧 */
+int state_sema[N];
+semaphore_t mutex;
+semaphore_t s[N];
 
 struct proc_struct *philosopher_proc_sema[N];
 
-void phi_test_sema(i) /* i竊싧벒耶루쟻餓캮-1 */
+void phi_test_sema(i)
 { 
     if(state_sema[i]==HUNGRY&&state_sema[LEFT]!=EATING
             &&state_sema[RIGHT]!=EATING)
@@ -40,30 +39,28 @@ void phi_take_forks_sema(int i) /* i竊싧벒耶루쟻餓캮-1 */
         down(&s[i]); /* 倻귝옖孃쀤툖겼룊耶먨갚삣줊 */
 }
 
-void phi_put_forks_sema(int i) /* i竊싧벒耶루쟻餓캮-1 */
+void phi_put_forks_sema(int i)
 { 
-        down(&mutex); /* 瓦쎾뀯訝당븣*/
-        state_sema[i]=THINKING; /* 꿨若띈퓵繞먪퍜*/
-        phi_test_sema(LEFT); /* 뗤訝뗥랩삣콉겼쑉맔썼퓵繞*/
-        phi_test_sema(RIGHT); /* 뗤訝뗥뤂삣콉겼쑉맔썼퓵繞*/
-        up(&mutex); /* 獵삣訝당븣*/
+        down(&mutex);
+        state_sema[i]=THINKING;
+        phi_test_sema(LEFT);
+        phi_test_sema(RIGHT);
+        up(&mutex);
 }
 
-int philosopher_using_semaphore(void * arg) /* i竊싧벒耶루쟻竊뚥퍗0캮-1 */
+int philosopher_using_semaphore(void * arg)
 {
     int i, iter=0;
     i=(int)arg;
     cprintf("I am No.%d philosopher_sema\n",i);
     while(iter++<TIMES)
-    { /* 좈솏孃ょ렞 */
-        cprintf("Iter %d, No.%d philosopher_sema is thinking\n",iter,i); /* 꿨若뜻ⓩ앲*/
+    {
+        cprintf("Iter %d, No.%d philosopher_sema is thinking\n",iter,i);
         do_sleep(SLEEP_TIME);
         phi_take_forks_sema(i); 
-        /* 誤곦륵ゅ룊耶먲펽뽬낂샍櫻*/
-        cprintf("Iter %d, No.%d philosopher_sema is eating\n",iter,i); /* 瓦쏃쨶 */
+        cprintf("Iter %d, No.%d philosopher_sema is eating\n",iter,i);
         do_sleep(SLEEP_TIME);
         phi_put_forks_sema(i); 
-        /* 듾륵듿룊耶먨릪뜻붂욄죱耶*/
     }
     cprintf("No.%d philosopher_sema quit\n",i);
     return 0;    
